@@ -20,7 +20,7 @@ void main() {
     throw Exception('Error: Environment variables not found or incomplete');
   }
 
-  HttpServer.bind(InternetAddress.loopbackIPv4, int.parse(env["PING_PORT"]!))
+  HttpServer.bind(InternetAddress.anyIPv4, int.parse(env["PING_PORT"]!))
       .then((server) {
     server.listen((HttpRequest request) {
       feeder.run(env);

@@ -5,6 +5,8 @@ services:
       context: .
       dockerfile: Dockerfile
     container_name: ath_feeder
+    volumes:
+      - /path/to/db:/app/db
     env_file:
       - .env
     restart: always
