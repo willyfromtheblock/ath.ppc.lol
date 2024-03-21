@@ -1,3 +1,5 @@
 .DS_Store
 feeder/.env
 feeder/feeder.exe
+feeder/aths.json
+feeder/docker-compose.override.yml

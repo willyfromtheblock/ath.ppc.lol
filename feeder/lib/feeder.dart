@@ -1,8 +1,12 @@
 import 'dart:convert';
+import 'dart:io';
 
 import 'package:aws_s3_api/s3-2006-03-01.dart';
 import 'package:dotenv/dotenv.dart';
+import 'package:simple_logger/simple_logger.dart';
 import 'package:sqlite_async/sqlite_async.dart';
+
+final logger = SimpleLogger();
 
 void run(DotEnv env) async {
   late SqliteDatabase db;
@@ -75,27 +79,42 @@ void run(DotEnv env) async {
     'blocksizeAth': blocksizeAth,
   };
 
-  print('All time highs: ${jsonEncode(aths)}');
+//write aths to aths.json
+  final jsonContent = jsonEncode(aths);
 
-  //write aths to aths.json
-  final file = utf8.encode(jsonEncode(aths));
+// Read the existing file
+  final tempFilePath = './aths.json';
+  final tempFile = File(tempFilePath);
+  bool fileExists = await tempFile.exists();
 
-  //upload to s3
-  final service = S3(
-    region: 'auto',
-    endpointUrl: env['S3_ENDPOINT_URL'],
-    credentials: AwsClientCredentials(
-      accessKey: env['S3_ACCESS_KEY']!,
-      secretKey: env['S3_SECRET_KEY']!,
-    ),
-  );
+  if (!fileExists ||
+      (fileExists && await tempFile.readAsString() != jsonContent)) {
+    // If the file doesn't exist or the content is different, upload to S3
+    final newFileContent = utf8.encode(jsonContent);
 
-  await service.putObject(
-    bucket: env['S3_BUCKET_NAME']!,
-    key: env['S3_FILE_NAME']!,
-    body: file,
-    contentType: 'application/json',
-  );
+    //upload to s3
+    final service = S3(
+      region: 'auto',
+      endpointUrl: env['S3_ENDPOINT_URL'],
+      credentials: AwsClientCredentials(
+        accessKey: env['S3_ACCESS_KEY']!,
+        secretKey: env['S3_SECRET_KEY']!,
+      ),
+    );
+
+    await service.putObject(
+      bucket: env['S3_BUCKET_NAME']!,
+      key: env['S3_FILE_NAME']!,
+      body: newFileContent,
+      contentType: 'application/json',
+    );
+
+    // Update the temp file with the new content
+    await tempFile.writeAsBytes(newFileContent);
+    logger.info(aths);
+  } else {
+    logger.info('No changes detected');
+  }
 
   //close db
   await db.close();

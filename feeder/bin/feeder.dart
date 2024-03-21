@@ -20,14 +20,15 @@ void main() {
   if (env.isEveryDefined(envList) == false) {
     throw Exception('Error: Environment variables not found or incomplete');
   }
-  final throttledFunction = debounce(() {
+  final debouncedFunction = debounce(() {
     feeder.run(env);
+    //debounced in case of resync
   }, const Duration(minutes: 1));
 
   HttpServer.bind(InternetAddress.anyIPv4, int.parse(env["PING_PORT"]!))
       .then((server) {
     server.listen((HttpRequest request) {
-      throttledFunction();
+      debouncedFunction();
       request.response
         ..statusCode = HttpStatus.ok
         ..write('Server received request')
