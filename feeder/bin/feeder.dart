@@ -1,6 +1,7 @@
 import 'package:feeder/feeder.dart' as feeder;
 import 'package:dotenv/dotenv.dart';
 import 'dart:io';
+import 'package:rate_limiter/rate_limiter.dart';
 
 const envList = [
   "PING_PORT",
@@ -19,11 +20,14 @@ void main() {
   if (env.isEveryDefined(envList) == false) {
     throw Exception('Error: Environment variables not found or incomplete');
   }
+  final throttledFunction = debounce(() {
+    feeder.run(env);
+  }, const Duration(minutes: 1));
 
   HttpServer.bind(InternetAddress.anyIPv4, int.parse(env["PING_PORT"]!))
       .then((server) {
     server.listen((HttpRequest request) {
-      feeder.run(env);
+      throttledFunction();
       request.response
         ..statusCode = HttpStatus.ok
         ..write('Server received request')

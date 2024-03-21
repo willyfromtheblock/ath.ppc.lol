@@ -9,6 +9,7 @@ environment:
 dependencies:
   aws_s3_api: ^2.0.0
   dotenv: ^4.2.0
+  rate_limiter: ^1.0.0
   sqlite_async: ^0.6.0
 
 dev_dependencies:
