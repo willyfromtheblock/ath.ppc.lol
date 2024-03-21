@@ -14,8 +14,11 @@ RUN dart compile exe bin/feeder.dart -o bin/feeder
 
 # Build minimal serving image from AOT-compiled `/server` and required system
 # libraries and configuration files stored in `/runtime/` from the build stage.
-FROM scratch
+
+FROM debian:buster-slim
+RUN apt-get update && apt-get install -y libsqlite3-dev
 COPY --from=build /runtime/ /
+COPY .env .env
 COPY --from=build /app/bin/feeder /app/bin/
 
 # Start server.
