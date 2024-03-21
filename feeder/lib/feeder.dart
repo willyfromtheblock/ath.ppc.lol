@@ -94,6 +94,7 @@ void run(DotEnv env) async {
     bucket: env['S3_BUCKET_NAME']!,
     key: env['S3_FILE_NAME']!,
     body: file,
+    contentType: 'application/json',
   );
 
   //close db
