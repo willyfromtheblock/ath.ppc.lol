@@ -3,3 +3,5 @@
 .dart_tool/
 db
 .env
+aths.json
+docker-compose.override.yml
