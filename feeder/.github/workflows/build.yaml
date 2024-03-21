@@ -14,7 +14,6 @@ env:
 
 jobs:
   upload:
-    working-directory: feeder
     strategy:
       matrix:
         os: [windows, macos, ubuntu]
@@ -27,12 +26,14 @@ jobs:
         with:
           sdk: stable
       - name: compile
+        working-directory: feeder
         shell: bash
         run: |
           dart pub get
           dart analyze
           dart compile exe bin/evmlistener.dart
       - name: upload (linux and macos)
+        working-directory: feeder
         if:  matrix.os != 'windows'
         shell: bash
         run: |
@@ -41,6 +42,7 @@ jobs:
           chmod +x $TARGET_FILE
           gh release upload ${{ github.event.release.tag_name }} $TARGET_FILE
       - name: upload (windows)
+        working-directory: feeder
         if:  matrix.os == 'windows'
         shell: bash
         run: |
