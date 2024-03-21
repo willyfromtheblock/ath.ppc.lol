@@ -1,0 +1,16 @@
+version: '3.1'
+services:
+  ath_feeder:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: ath_feeder
+    env_file:
+      - .env
+    restart: always
+    ports: 
+      - "3000:3000"    
+    logging:
+      driver: "json-file"
+      options:
+        max-size: 100m
