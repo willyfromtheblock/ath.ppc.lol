@@ -1,7 +1,9 @@
 import 'package:feeder/feeder.dart' as feeder;
 import 'package:dotenv/dotenv.dart';
+import 'dart:io';
 
 const envList = [
+  "PING_PORT",
   "DB_PATH",
   "MINIMUM_BLOCK",
   "S3_ENDPOINT_URL",
@@ -18,5 +20,14 @@ void main() {
     throw Exception('Error: Environment variables not found or incomplete');
   }
 
-  feeder.run(env);
+  HttpServer.bind(InternetAddress.loopbackIPv4, int.parse(env["PING_PORT"]!))
+      .then((server) {
+    server.listen((HttpRequest request) {
+      feeder.run(env);
+      request.response
+        ..statusCode = HttpStatus.ok
+        ..write('Server received request')
+        ..close();
+    });
+  });
 }
