@@ -1,0 +1,49 @@
+name: Add binaries to release
+run-name: Add binaries to release ${{ github.event.release.tag_name }}
+
+on:
+  release:
+    types:
+      - created
+
+permissions:
+  contents: write
+
+env:
+    GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+jobs:
+  upload:
+    strategy:
+      matrix:
+        os: [windows, macos, ubuntu]
+    runs-on: ${{ matrix.os }}-latest
+    name: Upload ${{ matrix.os }} binaries to release ${{ github.event.release.tag_name }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - uses: dart-lang/setup-dart@v1
+        with:
+          sdk: stable
+      - name: compile
+        shell: bash
+        run: |
+          dart pub get
+          dart analyze
+          dart compile exe bin/evmlistener.dart
+      - name: upload (linux and macos)
+        if:  matrix.os != 'windows'
+        shell: bash
+        run: |
+          export TARGET_FILE=evmlistener_${{ matrix.os }}_${{ github.event.release.tag_name }}
+          mv bin/evmlistener.exe $TARGET_FILE
+          chmod +x $TARGET_FILE
+          gh release upload ${{ github.event.release.tag_name }} $TARGET_FILE
+      - name: upload (windows)
+        if:  matrix.os == 'windows'
+        shell: bash
+        run: |
+          export TARGET_FILE=evmlistener_${{ matrix.os }}_${{ github.event.release.tag_name }}.exe
+          mv bin/evmlistener.exe $TARGET_FILE
+          chmod +x $TARGET_FILE
+          gh release upload ${{ github.event.release.tag_name }} $TARGET_FILE
