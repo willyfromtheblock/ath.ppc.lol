@@ -31,14 +31,14 @@ jobs:
         run: |
           dart pub get
           dart analyze
-          dart compile exe bin/evmlistener.dart
+          dart compile exe bin/feeder.dart
       - name: upload (linux and macos)
         working-directory: feeder
         if:  matrix.os != 'windows'
         shell: bash
         run: |
-          export TARGET_FILE=evmlistener_${{ matrix.os }}_${{ github.event.release.tag_name }}
-          mv bin/evmlistener.exe $TARGET_FILE
+          export TARGET_FILE=feeder_${{ matrix.os }}_${{ github.event.release.tag_name }}
+          mv bin/feeder.exe $TARGET_FILE
           chmod +x $TARGET_FILE
           gh release upload ${{ github.event.release.tag_name }} $TARGET_FILE
       - name: upload (windows)
@@ -46,7 +46,7 @@ jobs:
         if:  matrix.os == 'windows'
         shell: bash
         run: |
-          export TARGET_FILE=evmlistener_${{ matrix.os }}_${{ github.event.release.tag_name }}.exe
-          mv bin/evmlistener.exe $TARGET_FILE
+          export TARGET_FILE=feeder_${{ matrix.os }}_${{ github.event.release.tag_name }}.exe
+          mv bin/feeder.exe $TARGET_FILE
           chmod +x $TARGET_FILE
           gh release upload ${{ github.event.release.tag_name }} $TARGET_FILE
