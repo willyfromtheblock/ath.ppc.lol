@@ -1,2 +1,10 @@
-<h1>Welcome to SvelteKit</h1>
-<p>Visit <a href="https://kit.svelte.dev">kit.svelte.dev</a> to read the documentation</p>
+<script type="ts">
+	export let data;
+	console.log(data);
+</script>
+
+{#if data}
+	{#each Object.entries(data) as [key, value]}
+		<div>{key} {value['id']}</div>
+	{/each}
+{/if}
