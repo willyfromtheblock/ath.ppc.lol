@@ -57,4 +57,8 @@
 		display: flex;
 		justify-content: space-around;
 	}
+
+	footer > div > a {
+		color: white;
+	}
 </style>
