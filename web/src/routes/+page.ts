@@ -1,12 +1,17 @@
-export async function load({
-	fetch
-}): Promise<{ [key: string]: { id: string; timeBlock: number } } | null> {
+export async function load({ fetch }): Promise<{ aths: Ath[] } | {}> {
 	try {
 		const response = await fetch(`https://ath-bucket.ppc.lol/aths.json`);
-		const data = await response.json();
-		return data;
+		const data: Ath[] = await response.json();
+		return { aths: data };
 	} catch (error) {
 		console.error(error);
-		return null;
+		return {};
 	}
 }
+
+type Ath = {
+	name: string;
+	height: number;
+	timeBlock: number;
+	value: number;
+};
