@@ -34,6 +34,7 @@ void run(DotEnv env) async {
   //coins created ath (proof of work)
   final powCoinsCreatedAth = await db.get(
       'SELECT id, mint, timeBlock FROM blocks WHERE type = "proof-of-work" ORDER BY mint DESC LIMIT 1');
+
   //coins created ath (proof of stake)
   final posCoinsCreatedAth = await db.get(
       'SELECT id, mint, timeBlock FROM blocks WHERE (type = "proof-of-stake" OR type = "proof-of-stake stake-modifier") AND id >= $minimumBlock ORDER BY mint DESC LIMIT 1');
@@ -67,19 +68,29 @@ void run(DotEnv env) async {
       'SELECT id, blockSize, timeBlock FROM blocks ORDER BY blockSize DESC LIMIT 1');
 
   // Create a JSON with the values above
-  var aths = {
-    'powCoinsCreatedAth': powCoinsCreatedAth,
-    'posCoinsCreatedAth': posCoinsCreatedAth,
-    'powDifficultyAth': powDifficultyAth,
-    'posDifficultyAth': posDifficultyAth,
-    'coinsupplyAth': coinsupplyAth,
-    'txfeeAth': txfeeAth,
-    'realtxAth': realtxAth,
-    'realvoutAth': realvoutAth,
-    'blocksizeAth': blocksizeAth,
-  };
+  Map<String, dynamic> createAthMap(
+      String name, Map<String, dynamic> ath, String valueKey) {
+    return {
+      'name': name,
+      'height': ath['id'],
+      'timeBlock': ath['timeBlock'],
+      'value': ath[valueKey],
+    };
+  }
 
-//write aths to aths.json
+  final aths = [
+    createAthMap('powCoinsCreated', powCoinsCreatedAth, 'mint'),
+    createAthMap('posCoinsCreated', posCoinsCreatedAth, 'mint'),
+    createAthMap('powDifficulty', powDifficultyAth, 'difficulty'),
+    createAthMap('posDifficulty', posDifficultyAth, 'difficulty'),
+    createAthMap('coinsupply', coinsupplyAth, 'coinsupply'),
+    createAthMap('txfee', txfeeAth, 'txfee'),
+    createAthMap('realtx', realtxAth, 'RealTX'),
+    createAthMap('realvout', realvoutAth, 'RealVOUT'),
+    createAthMap('blocksize', blocksizeAth, 'blockSize'),
+  ];
+
+  //write aths to aths.json
   final jsonContent = jsonEncode(aths);
 
 // Read the existing file
