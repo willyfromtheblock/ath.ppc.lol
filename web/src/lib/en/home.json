@@ -15,6 +15,7 @@
 		"realvout": "Real Transaction Value",
 		"blocksize": "Block Size"
 	},
+	"lastModified": "Last modified: ",
 	"footer": {
 		"charts": "Peercoin Charts",
 		"website": "Peercoin Website",

@@ -26,6 +26,9 @@
 		<div>{$t(`home.noData`)}</div>
 	{/if}
 </div>
+<div class="last-modified">
+	{$t('home.lastModified')}{data.lastModified}
+</div>
 
 <style>
 	.container {
@@ -45,5 +48,8 @@
 		display: flex;
 		flex-direction: column;
 		justify-content: space-evenly;
+	}
+	.last-modified {
+		margin-top: 1rem;
 	}
 </style>

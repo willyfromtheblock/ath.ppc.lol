@@ -28,7 +28,7 @@
 		font-family: 'Roboto';
 		background: rgb(60, 176, 84);
 		color: white;
-		padding: 1rem;
+		padding: 0.5rem;
 		margin-left: 2rem;
 		margin-right: 2rem;
 	}
@@ -44,11 +44,10 @@
 	header {
 		display: flex;
 		align-items: center;
-		margin-bottom: 0.5rem;
 		flex-wrap: wrap;
 	}
 	footer {
-		margin-top: 2rem;
+		margin-top: 1rem;
 		text-align: center;
 	}
 	footer > div {
@@ -57,7 +56,6 @@
 		display: flex;
 		justify-content: space-around;
 	}
-
 	footer > div > a {
 		color: white;
 	}
