@@ -20,6 +20,7 @@
 		<a href="https://ppc.lol/dotnet" target="_blank" rel="noopener noreferrer"
 			>{$t('home.footer.website')}
 		</a>
+		<span>Donations: PM7jjBUPjzpkZy1UZtD7mvmHoXJ2BGvbx9</span>
 	</div>
 </footer>
 
@@ -47,14 +48,15 @@
 		flex-wrap: wrap;
 	}
 	footer {
-		margin-top: 1rem;
+		margin-top: 1.5rem;
 		text-align: center;
 	}
 	footer > div {
-		margin-top: 1rem;
+		margin-top: 1.5rem;
 		font-size: 1.5rem;
 		display: flex;
-		justify-content: space-around;
+		justify-content: space-evenly;
+		flex-wrap: wrap;
 	}
 	footer > div > a {
 		color: white;

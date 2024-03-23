@@ -5,15 +5,42 @@
 	"value": "Value",
 	"blockHeight": "Block Height",
 	"items": {
-		"powCoinsCreated": "Proof-of-Work Coins Created",
-		"posCoinsCreated": "Proof-of-Stake Coins Created",
-		"powDifficulty": "Proof-of-Work Difficulty",
-		"posDifficulty": "Proof-of-Stake Difficulty",
-		"coinsupply": "Coin Supply",
-		"txfee": "Transaction Fees",
-		"realtx": "Real Transaction Number",
-		"realvout": "Real Transaction Value",
-		"blocksize": "Block Size"
+		"powCoinsCreated": {
+			"title": "Proof-of-Work Coins Created",
+			"description": "The number of coins created through Proof-of-Work."
+		},
+		"posCoinsCreated": {
+			"title": "Proof-of-Stake Coins Created",
+			"description": "The number of coins created through Proof-of-Stake."
+		},
+		"powDifficulty": {
+			"title": "Proof-of-Work Difficulty",
+			"description": "The difficulty of the Proof-of-Work algorithm."
+		},
+		"posDifficulty": {
+			"title": "Proof-of-Stake Difficulty",
+			"description": "The difficulty of the Proof-of-Stake algorithm."
+		},
+		"coinsupply": {
+			"title": "Coin Supply",
+			"description": "The total number of coins in circulation."
+		},
+		"txfee": {
+			"title": "Transaction Fees",
+			"description": "The fees associated with transactions."
+		},
+		"realtx": {
+			"title": "Real Transaction Number",
+			"description": "The number of real transactions."
+		},
+		"realvout": {
+			"title": "Real Transaction Value",
+			"description": "The value of real transactions."
+		},
+		"blocksize": {
+			"title": "Block Size",
+			"description": "The size of the blocks in the blockchain in bytes."
+		}
 	},
 	"lastModified": "Last modified: ",
 	"footer": {

@@ -7,7 +7,11 @@
 	{#if data.aths}
 		{#each data.aths as item}
 			<div class="grid-item">
-				<h1>{$t(`home.items.${item.name}`)}</h1>
+				<div>
+					<h1>{$t(`home.items.${item.name}.title`)}</h1>
+					<p><small>{$t(`home.items.${item.name}.description`)}</small></p>
+					<hr />
+				</div>
 				<div class="item-content">
 					<h4>
 						<a
@@ -18,7 +22,7 @@
 							{item.height} ({new Date(item.timeBlock * 1000).toLocaleDateString()})
 						</a>
 					</h4>
-					<h3>{item.value}</h3>
+					<h3 class="right-align">{item.value}</h3>
 				</div>
 			</div>
 		{/each}
@@ -49,7 +53,16 @@
 		flex-direction: column;
 		justify-content: space-evenly;
 	}
+	.right-align {
+		text-align: right;
+	}
 	.last-modified {
-		margin-top: 1rem;
+		margin-top: 1.5rem;
+	}
+	hr {
+		color: #dff0d8;
+		width: 33%;
+		text-align: left;
+		margin-left: 0;
 	}
 </style>
