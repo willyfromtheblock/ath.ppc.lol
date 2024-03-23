@@ -45,6 +45,7 @@
 	}
 	.grid-item {
 		padding: 1rem;
+		background: var(--peercoin-green);
 		border-radius: 5px;
 		box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 		display: flex;
@@ -60,10 +61,11 @@
 		text-align: right;
 	}
 	.last-modified {
+		color: var(--peercoin-green);
 		margin-top: 1.5rem;
 	}
 	hr {
-		color: #dff0d8;
+		color: var(--peercoin-white);
 		width: 33%;
 		text-align: left;
 		margin-left: 0;

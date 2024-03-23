@@ -3,7 +3,7 @@
 </script>
 
 <header>
-	<img src="/peercoin.svg" alt="Logo" height="200px" />
+	<img src="/peercoin.svg" alt="Logo" height="150px" />
 	<h2>{$t('home.title')}</h2>
 </header>
 <main>
@@ -27,7 +27,7 @@
 <style>
 	:global(body) {
 		font-family: 'Roboto';
-		background: rgb(60, 176, 84);
+		background: var(--peercoin-white);
 		color: white;
 		padding: 0.5rem;
 		margin-left: 1rem;
@@ -42,12 +42,16 @@
 		}
 	}
 	:global(hr) {
-		color: #dff0d8;
+		color: var(--peercoin-white);
 	}
 
 	:global(a) {
 		color: lightgrey;
 		text-decoration: none;
+	}
+	:global(:root) {
+		--peercoin-green: rgb(60, 176, 84);
+		--peercoin-white: var(--peercoin-white);
 	}
 	.donations {
 		font-size: 1rem;
@@ -57,15 +61,20 @@
 	}
 
 	header {
+		color: var(--peercoin-green);
 		display: flex;
 		align-items: center;
 		flex-wrap: wrap;
 		justify-content: center;
+		margin-bottom: 2rem;
+		gap: 1rem;
 		@media (min-width: 768px) {
 			justify-content: unset;
+			gap: 3rem;
 		}
 	}
 	footer {
+		color: var(--peercoin-green);
 		margin-top: 1.5rem;
 		text-align: center;
 	}
@@ -77,6 +86,6 @@
 		flex-wrap: wrap;
 	}
 	footer > div > a {
-		color: white;
+		color: var(--peercoin-green);
 	}
 </style>
