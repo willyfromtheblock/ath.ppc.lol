@@ -3,30 +3,35 @@
 	import { t } from '$lib/translations';
 </script>
 
-<main>
+<div class="container">
 	{#if data.aths}
 		{#each data.aths as item}
 			<div class="grid-item">
 				<h1>{$t(`home.items.${item.name}`)}</h1>
 				<div class="item-content">
-					<span>
-						{$t(`home.block`)}
-						{item.height} ({new Date(item.timeBlock * 1000).toLocaleDateString()})
-					</span>
-					<span>{$t(`home.value`)} {item.value}</span>
+					<h4>
+						<a
+							href={`https://blockbook.peercoin.net/block/${item.height}`}
+							target="_blank"
+							rel="noopener noreferrer"
+							>{$t(`home.block`)}
+							{item.height} ({new Date(item.timeBlock * 1000).toLocaleDateString()})
+						</a>
+					</h4>
+					<h3>{item.value}</h3>
 				</div>
 			</div>
 		{/each}
 	{:else}
 		<div>{$t(`home.noData`)}</div>
 	{/if}
-</main>
+</div>
 
 <style>
-	main {
+	.container {
 		display: grid;
-		grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
 		grid-gap: 20px;
+		grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
 	}
 	.grid-item {
 		padding: 1rem;

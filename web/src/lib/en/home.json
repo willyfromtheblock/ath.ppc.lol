@@ -1,6 +1,7 @@
 {
 	"block": "Block",
 	"noData": "No data",
+	"title": "Peercoin All Time Highs",
 	"value": "Value",
 	"blockHeight": "Block Height",
 	"items": {
@@ -13,5 +14,8 @@
 		"realtx": "Real Transaction Number",
 		"realvout": "Real Transaction Value",
 		"blocksize": "Block Size"
+	},
+	"footer": {
+		"disclaimer": "For Proof-of-Stake (PoS) related values, block 10373 was taken as starting point as first PoS block with 1.0 difficulty. For Proof-of-Work related values, block 1 was taken as starting point."
 	}
 }
