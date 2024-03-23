@@ -16,6 +16,8 @@
 		"blocksize": "Block Size"
 	},
 	"footer": {
+		"charts": "Peercoin Charts",
+		"website": "Peercoin Website",
 		"disclaimer": "For Proof-of-Stake (PoS) related values, block 10373 was taken as starting point as first PoS block with 1.0 difficulty. For Proof-of-Work related values, block 1 was taken as starting point."
 	}
 }

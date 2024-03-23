@@ -13,6 +13,14 @@
 <footer>
 	<hr />
 	<p>{$t('home.footer.disclaimer')}</p>
+	<div>
+		<a href="https://ppc.lol/charts" target="_blank" rel="noopener noreferrer"
+			>{$t('home.footer.charts')}
+		</a>
+		<a href="https://ppc.lol/dotnet" target="_blank" rel="noopener noreferrer"
+			>{$t('home.footer.website')}
+		</a>
+	</div>
 </footer>
 
 <style>
@@ -41,5 +49,12 @@
 	}
 	footer {
 		margin-top: 2rem;
+		text-align: center;
+	}
+	footer > div {
+		margin-top: 1rem;
+		font-size: 1.5rem;
+		display: flex;
+		justify-content: space-around;
 	}
 </style>
