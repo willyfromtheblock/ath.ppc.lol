@@ -1,11 +1,17 @@
 {
-	"powCoinsCreated": "Proof-of-Work Coins Created",
-	"posCoinsCreated": "Proof-of-Stake Coins Created",
-	"powDifficulty": "Proof-of-Work Difficulty",
-	"posDifficulty": "Proof-of-Stake Difficulty",
-	"coinsupply": "Coin Supply",
-	"txfee": "Transaction Fees",
-	"realtx": "Real Transaction Number",
-	"realvout": "Real Transaction Value",
-	"blocksize": "Block Size"
+	"block": "Block",
+	"noData": "No data",
+	"value": "Value",
+	"blockHeight": "Block Height",
+	"items": {
+		"powCoinsCreated": "Proof-of-Work Coins Created",
+		"posCoinsCreated": "Proof-of-Stake Coins Created",
+		"powDifficulty": "Proof-of-Work Difficulty",
+		"posDifficulty": "Proof-of-Stake Difficulty",
+		"coinsupply": "Coin Supply",
+		"txfee": "Transaction Fees",
+		"realtx": "Real Transaction Number",
+		"realvout": "Real Transaction Value",
+		"blocksize": "Block Size"
+	}
 }
