@@ -7,7 +7,7 @@
 	{#if data.aths}
 		{#each data.aths as item}
 			<div class="grid-item">
-				<div>
+				<div class="item-header">
 					<h1>{$t(`home.items.${item.name}.title`)}</h1>
 					<p><small>{$t(`home.items.${item.name}.description`)}</small></p>
 					<hr />
@@ -56,6 +56,9 @@
 		display: flex;
 		flex-direction: column;
 		justify-content: space-evenly;
+	}
+	.item-header {
+		flex-basis: 11rem;
 	}
 	.right-align {
 		text-align: right;
